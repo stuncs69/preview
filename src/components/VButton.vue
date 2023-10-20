@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <button>
         {{ this.text }}
-    </div>
+    </button>
 </template>
 
 <style scoped>
 
-div {
+button {
     width: fit-content;
     height: min-content;
     padding: 1rem;
@@ -16,9 +16,10 @@ div {
     cursor: pointer;
     font-size: x-large;
     border-radius: 0.4rem;
+    border: none;
 }
 
-div:hover {
+button:hover {
     background-color: maroon;
 }
 

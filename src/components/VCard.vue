@@ -10,11 +10,11 @@ div {
     width: 96%;
     height: 85%;
     margin-top: 4%;
-    position: absolute;
-    background-color: rgba(87, 86, 86, 0.329);
+    position: absolute; 
+    background-color: white;
     border-radius: 2rem;
     padding: 4rem;
-    color: white;
+    color: black;
 }
 
 </style>

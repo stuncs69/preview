@@ -4,8 +4,9 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  overflow: hidden;
 
-  background-color: black;
+  background-image: url("https://ctf.cyberbrein.nl/img/ctf-red.webp");
 
   font-weight: normal;
 }
