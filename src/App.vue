@@ -17,9 +17,19 @@
       </VCard>
     </div>
   </div>
+  <div id="opdracht">
+
+  </div>
 </template>
 
 <style scoped>
+
+#id {
+  display: none;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
 
 #content {
   background-color: transparent;
