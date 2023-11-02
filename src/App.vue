@@ -1,21 +1,25 @@
 <template>
-  <div id="ui">
-    <div id="topBar">
-        <VButton @click.native="travel('upload')" text="Upload nieuwe opdracht"/>
-        <VButton @click.native="travel('latest')" text="Bekijk laatste opdracht"/>
-        <VButton @click.native="travel('delete')" text="Verwijder laatste opdracht uit cache"/>
-    </div>
-    <div id="content">
-      <VCard id="upload" style="display: block;">
-        <h1>Test1</h1>
-      </VCard>
-      <VCard id="latest" style="display: none;">
-        <h1>Test2</h1>
-      </VCard>
-      <VCard id="delete" style="display: none;">
-        <h1>Test3</h1>
-      </VCard>
-    </div>
+  <div id="ui" class="d-flex flex-column justify-content-around">
+    <VCard title="CTFLib opdrachten previewer ">
+      <div class="d-flex flex-row justify-content-around">
+        <input class="form-control w-50" type="file" ref="opdrachtFile" id="opdrachtFile" accept="application/JSON">
+        <VButton @click="upload()" text="Laad opdracht"/>
+        <!--<VButton @click.native="travel('delete')" text="Verwijder laatste opdracht uit cache"/>-->
+      </div>
+    </VCard>
+    <VCard title="FAQ">
+      <article>
+        <h4>Waarom kan ik de CTF niet lokaal hosten?</h4>
+        <hr>
+        <p>Om de veiligheid van de applicatie te bewaren hebben we besloten om een aparte website te maken waarop er in
+          een veilige omgeving gespeeld kan worden met JavaScript, zonder dat de CTF kans loopt op schade.</p>
+      </article><br>
+      <article>
+        <h4>Hoe maak ik een opdracht voor de CTFv2?</h4>
+        <hr>
+        <p>Je kan vragen over de CTFv2 en de ontwikkeling van opdrachten ervoor in de <a href="https://discord.gg/2q6Byy4eKw">Discord server.</a></p>
+      </article>
+    </VCard>
   </div>
   <div id="opdracht">
 
@@ -23,7 +27,6 @@
 </template>
 
 <style scoped>
-
 #id {
   display: none;
   top: 0;
@@ -50,6 +53,7 @@
   width: 100%;
   height: 100%;
   z-index: 1;
+  padding: 2rem;
 }
 
 #c {
@@ -71,7 +75,6 @@
   border-radius: 2rem;
   z-index: 2;
 }
-
 </style>
 
 <script>
@@ -96,6 +99,15 @@ export default {
         })
       })
       document.querySelector(`#${toPage}`).style.display = "block";
+    },
+    upload() {
+		let file = this.$refs.opdrachtFile.files[0];
+		let reader = new FileReader();
+		reader.readAsText(file, "UTF-8");
+		reader.onload = function (evt) {
+			// alert(evt.target.result);
+		}
+		alert("Deze website is nog in aanbouw!")
     }
   },
 }

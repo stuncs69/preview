@@ -1,20 +1,19 @@
 <template>
-    <div>
-        <slot></slot>
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ title }}</h1>
+        </div>
+        <div class="card-body">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
-<style scoped>
+<script>
 
-div {
-    width: 96%;
-    height: 85%;
-    margin-top: 4%;
-    position: absolute; 
-    background-color: white;
-    border-radius: 2rem;
-    padding: 4rem;
-    color: black;
+export default {
+    name: "VCard",
+    props: ['title'],
 }
 
-</style>
+</script>
