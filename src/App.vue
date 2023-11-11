@@ -19,6 +19,17 @@
 				<h4>Hoe maak ik een opdracht voor de CTFv2?</h4>
 				<hr>
 				<p>Je kan vragen over de CTFv2 en de ontwikkeling van opdrachten ervoor in de <a href="https://discord.gg/2q6Byy4eKw">Discord server.</a></p>
+			</article><br>
+			<article>
+				<h4>Hoe werkt deze website?</h4>
+				<hr>
+				<p>Dit zijn de instructies van de CTFv2 preview website, waarin gemakkelijk opdrachten gemaakt met de CTFLib (<a href="https://www.npmjs.com/package/ctflib">NPM</a>) getest kunnen worden.</p>
+				<h5>Het laden van een opdracht gaat als volgt:</h5>
+				<ol>
+					<li>Ga naar de CTFLib <a href="https://stuncs.space/preview/">preview website</a> (Als het goed is zit je daar nu op!)</li>
+					<li>Upload de JSON bestand die gegenereerd is door CTFBuild (<a href="https://www.npmjs.com/package/ctfbuild">NPM</a>)</li>
+				</ol>
+				<p>Als het goed is bouwt de website zichzelf om naar de opdracht die jij gebouwt hebt. In deze omgeving is het mogelijk om te testen op bugs/fouten in de code.</p>
 			</article>
     	</VCard>
 	</VCard>
