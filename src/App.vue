@@ -1,25 +1,27 @@
 <template>
-  <div id="ui" class="d-flex flex-column justify-content-around">
+  <div class="background" />
+  <div id="ui" class="d-flex flex-row justify-content-around">
     <VCard title="CTFLib opdrachten previewer ">
       <div class="d-flex flex-row justify-content-around">
-        <input class="form-control w-50" type="file" ref="opdrachtFile" id="opdrachtFile" accept="application/JSON">
-        <VButton @click="upload()" text="Laad opdracht"/>
+        <input class="form-control w-100" type="file" ref="opdrachtFile" id="opdrachtFile" accept="application/JSON">
+        <!-- <VButton @click="upload()" text="Laad opdracht"/> -->
         <!--<VButton @click.native="travel('delete')" text="Verwijder laatste opdracht uit cache"/>-->
       </div>
-    </VCard>
-    <VCard title="FAQ">
-      <article>
-        <h4>Waarom kan ik de CTF niet lokaal hosten?</h4>
-        <hr>
-        <p>Om de veiligheid van de applicatie te bewaren hebben we besloten om een aparte website te maken waarop er in
-          een veilige omgeving gespeeld kan worden met JavaScript, zonder dat de CTF kans loopt op schade.</p>
-      </article><br>
-      <article>
-        <h4>Hoe maak ik een opdracht voor de CTFv2?</h4>
-        <hr>
-        <p>Je kan vragen over de CTFv2 en de ontwikkeling van opdrachten ervoor in de <a href="https://discord.gg/2q6Byy4eKw">Discord server.</a></p>
-      </article>
-    </VCard>
+	  	<br><br>
+		<VCard title="FAQ">
+			<article>
+				<h4>Waarom kan ik de CTF niet lokaal hosten?</h4>
+				<hr>
+				<p>Om de veiligheid van de applicatie te bewaren hebben we besloten om een aparte website te maken waarop er in
+				een veilige omgeving gespeeld kan worden met JavaScript, zonder dat de CTF kans loopt op schade.</p>
+			</article><br>
+			<article>
+				<h4>Hoe maak ik een opdracht voor de CTFv2?</h4>
+				<hr>
+				<p>Je kan vragen over de CTFv2 en de ontwikkeling van opdrachten ervoor in de <a href="https://discord.gg/2q6Byy4eKw">Discord server.</a></p>
+			</article>
+    	</VCard>
+	</VCard>
   </div>
   <div id="opdracht">
 
@@ -43,15 +45,30 @@
   height: 70%;
 }
 
+.background {
+	background-image: url(https://ctf.cyberbrein.nl/img/ctf-red.webp);
+	z-index: -2;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+}
+
+#opdracht {
+	height: 100%;
+	width: 100%;
+}
+
 #ui {
   top: 0;
   left: 0;
   position: absolute;
-  background-image: url(https://ctf.cyberbrein.nl/img/ctf-red.webp);
+  /* background-image: url(https://ctf.cyberbrein.nl/img/ctf-red.webp); */
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: max-content;
   z-index: 1;
   padding: 2rem;
 }
@@ -86,9 +103,15 @@ export default {
     VButton,
     VCard
   },
+  mounted() {
+	this.$refs.opdrachtFile.addEventListener('change', (e) => {
+		this.upload()
+	})
+  },
   data() {
     return {
-      page: "upload"
+      page: "upload",
+	  showModal: false
     }
   },
   methods: {
@@ -105,9 +128,25 @@ export default {
 		let reader = new FileReader();
 		reader.readAsText(file, "UTF-8");
 		reader.onload = function (evt) {
-			// alert(evt.target.result);
+			console.log(evt.target.result);
+			const parsed = JSON.parse(evt.target.result);
+
+			// remove old UI
+			document.getElementById("ui").remove()
+			document.getElementsByClassName("background")[0].remove()
+
+			// create new elements
+			const script = document.createElement("script")
+			const style = document.createElement("style")
+
+			// render HTML & CSS first
+			document.getElementById("opdracht").innerHTML = parsed.code.html;
+			style.innerHTML = parsed.code.css;
+
+			// render script
+			script.innerHTML = parsed.code.js
+			console.log(parsed)
 		}
-		alert("Deze website is nog in aanbouw!")
     }
   },
 }
